@@ -1,0 +1,92 @@
+@import '../../config';
+
+.hero {
+  position: relative;
+  display: flex;
+
+  min-height: 50vh;
+  margin-left: -$gutter;
+  margin-right: -$gutter;
+
+  background: transparent url("data/hero.jpg") fixed no-repeat;
+  background-size: cover;
+
+
+  @media (min-width: $max-width / 2) {
+    height: 100vh;
+    background-position: 50% 50%;
+  }
+
+  &__protection {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    margin-left: -$gutter;
+    margin-right: -$gutter;
+
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  &__content {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin: auto;
+    padding: $gutter * 2 $gutter 0;
+
+    opacity: 0;
+    animation: fade-in 2s ease-in-out forwards 1s;
+
+    color: white;
+
+    word-break: break-word;
+    text-align: center;
+  }
+
+  &__text {
+    margin: 0;
+
+    font-family: $font-heading;
+    font-size: 1.5rem;
+
+    @media (min-width: $max-width / 2) {
+      font-size: 2.25rem;
+    }
+  }
+
+  &__title {
+    margin-bottom: $gutter * 3;
+
+    font-family: $font-heading;
+    font-weight: bold;
+    font-size: 3rem;
+
+    @media (min-width: $max-width / 2) {
+      font-size: 4.5rem;
+    }
+
+    opacity: 0;
+    animation: fade-in 2s ease-in-out forwards 1.9s;
+  }
+
+  &__button {
+    opacity: 0;
+    animation: fade-in 2s ease-in-out forwards 2.8s;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

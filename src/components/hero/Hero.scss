@@ -1,4 +1,4 @@
-@import '../../config';
+@import '../../config.scss';
 
 .hero {
   position: relative;
@@ -7,8 +7,9 @@
   min-height: 50vh;
   margin-left: -$gutter;
   margin-right: -$gutter;
+  margin-bottom: $gutter * 2;
 
-  background: transparent url("data/hero.jpg") fixed no-repeat;
+  background: transparent url("../../data/hero.jpg") fixed no-repeat;
   background-size: cover;
 
 
@@ -72,7 +73,6 @@
     }
 
     opacity: 0;
-    animation: fade-in 2s ease-in-out forwards 1.9s;
   }
 
   &__button {

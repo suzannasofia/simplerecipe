@@ -1,4 +1,4 @@
-@import 'config';
+@import 'config.scss';
 
 /* setjum box-sizing: border-box; á allt */
 html { /* stylelint-disable-line */
@@ -50,6 +50,7 @@ main { /* stylelint-disable-line */
  * font-family:  bold
  * font-family:  italic
  */
-
-@import 'components/header/Header.scss';
-@import 'components/hero/Hero.scss';
+// 
+// @import 'components/header/Header.scss';
+// @import 'components/hero/Hero.scss';
+// @import 'routes/recipes/Recipes.scss';

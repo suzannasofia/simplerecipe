@@ -1,0 +1,108 @@
+@import '../../config.scss';
+
+.recipes {
+  width: 100%;
+  max-width: $max-width;
+
+  // margin: $gutter * 2 auto;
+  margin-left: $gutter * 2 auto;
+  margin-right: $gutter * 2 auto;
+  margin-bottom: $gutter * 2 auto;
+
+  &__title {
+    display: flex;
+    width: 100%;
+    font-family: $font-heading;
+    font-size: 4rem;
+    font-weight: bold;
+    margin: $gutter * 3;
+    text-align: center;
+
+  }
+
+  &__row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-right: -($gutter / 2);
+    margin-bottom: $gutter;
+    margin-left: -($gutter / 2);
+  }
+
+  &__recipe {
+    @include columns(12);
+
+    display: flex;
+    justify-content: center;
+
+    margin-bottom: $gutter * 4;
+
+    @media (min-width: $max-width / 2) {
+      @include columns(6);
+    }
+
+    @media (min-width: $max-width) {
+      @include columns(4);
+    }
+  }
+}
+
+.recipe {
+  width: 100%;
+  max-width: 400px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__image {
+    max-width: 300px;
+    max-height: 300px;
+    border-radius: 500%;
+    overflow: hidden;
+
+    margin-bottom: $gutter;
+  }
+
+  &__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: stretch;
+    flex: 1;
+    text-decoration: none;
+
+    text-align: center;
+  }
+
+  &__title a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    text-decoration: none;
+
+    margin-bottom: 10px;
+
+    font-size: 1.5rem;
+    color: black;
+  }
+
+  &__description {
+    font-size: 1.125rem;
+    font-weight: bold;
+    font-style: italic;
+    color: grey;
+  }
+
+  &__extra {
+    font-size: 0.875rem;
+    color: #666;
+  }
+}

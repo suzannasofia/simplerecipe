@@ -1,0 +1,51 @@
+@import '../../config.scss';
+
+.footer {
+  width: 100%;
+
+  &__content {
+    margin-left: -$gutter;
+    margin-right: -$gutter;
+
+    padding: $gutter;
+
+    color: #eee;
+    background-color: #333;
+  }
+
+  &__row {
+    display: flex;
+    max-width: $max-width;
+    margin: 0 auto;
+  }
+
+  &__col {
+    @include columns(6);
+
+    text-align: center;
+
+    @media (min-width: $max-width / 2) {
+      @include columns(3);
+
+      &:first-child {
+        margin-left: (3/12*100) * 1%;
+      }
+    }
+  }
+
+  &__copyright {
+    width: 100%;
+    max-width: $max-width;
+
+    margin: $gutter * 2 auto 0;
+    padding-top: $gutter;
+    border-top: 2px solid #999;
+
+    text-align: center;
+
+    color: #999;
+
+    text-align: center;
+    font-size: 0.875rem;
+  }
+}

@@ -25,9 +25,9 @@ export default class Hero extends Component {
                 {subTitle}
               </p>
               <h2 className="hero__title" style={titleStyle}>{title}</h2>
-              <div className="hero__button">
+              {/*<div className="hero__button">
                 <a href="kaupa.html" className="button button--large"></a>
-              </div>
+              </div>*/}
             </div>
         </section>
       );

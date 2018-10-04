@@ -1,0 +1,10 @@
+.paging {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  &__next {
+    margin-left: 20px;
+  }
+  &__prev {
+    margin-right: 20px;
+  }
+}

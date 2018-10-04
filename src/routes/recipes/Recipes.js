@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-import Hero from '../../components/hero';
 import Helmet from 'react-helmet';
-import storedData from '../../data/data';
 import { Link } from 'react-router-dom';
+import querystring from 'querystring';
+
+import Hero from '../../components/hero';
+import Heading from '../../components/heading';
+import Paging from '../../components/paging';
+import api from '../../api';
 import './Recipes.css';
 
 export default class Recipes extends Component {
@@ -10,17 +14,75 @@ export default class Recipes extends Component {
   state = { loading: true }
 
   componentDidMount() {
-    this.fetchRecipe();
+    this.fetchRecipes();
   }
 
-  async fetchRecipe() {
-    const content = await storedData();
-    if (content.recipes.length <=  0) this.setState({ error: 'No recipes'});
-    this.setState({ loading: false, data: content});
+  parseQueryString() {
+    const { search = '' } = this.props.location;
+
+    let query = '';
+    let page = 1;
+
+    if (search) {
+      const q = querystring.parse(search.startsWith('?') ? search.substr(1) : search);
+      query = q.query;
+      page = Number(q.page) || 1;
+    }
+
+    return { query, page };
+  }
+
+  async fetchRecipes() {
+    const { query, page = 1 } = this.parseQueryString();
+
+    const limit = 4;
+    const offset = (page - 1) * limit;
+
+    let url = `/recipes?&limit=${limit}&offset=${offset}`;
+
+    if (query) {
+      url = `${url}&search=${query}`;
+    }
+
+    try {
+      const data = await api.get(url);
+      this.setState({ loading: false, data: data.result });
+    } catch (error) {
+      console.log('Error fetching recipe data', error);
+      this.setState({ error: true, loading: false });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.location.search !== prevProps.location.search) {
+      this.setState({ loading: true });
+      this.fetchRecipes();
+    }
+  }
+
+  nextPage = (e) => {
+    const { history } = this.props;
+    const { query, page } = this.parseQueryString();
+
+    history.push(`/recipes?query=${query}&page=${page + 1}`);
+  }
+
+  prevPage = (e) => {
+    const { history } = this.props;
+    const { query, page } = this.parseQueryString();
+
+    history.push(`/recipes?query=${query}&page=${page - 1}`);
   }
 
   render() {
     const { data, loading, error } = this.state;
+    const { query, page } = this.parseQueryString();
+
+    let heading = 'All recipes';
+
+    if (query) {
+      heading = `Searching recipes: ${query}`;
+    }
 
     if (loading) {
       return (<div>Loading recipes...</div>);
@@ -30,19 +92,23 @@ export default class Recipes extends Component {
       return (<div>Error, could not load recipes</div>);
     }
 
+    const title = page > 1 ? `Recipes, page ${page}` : 'Recipes';
+
     return (
       <section className="recipes">
-        <Helmet title='Recipes' />
+        <Helmet title={title} />
         <Hero
           title='Recipes'
           size='50'
           speed='0.1s'/>
 
-        <h2 className="recipes__title">All recipes</h2>
+        <Heading>{heading}</Heading>
+
+        {/*<h2 className="recipes__title">All recipes</h2>*/}
         <div className="recipes__row">
 
 
-            {data && data.recipes && data.recipes.map((recipe, i) => (
+            {data && data.items && data.items.map((recipe, i) => (
               <div className="recipes__recipe" key={recipe.id}>
                 <div className="recipe">
                   <div className="recipe__image">
@@ -62,6 +128,14 @@ export default class Recipes extends Component {
             ))}
 
         </div>
+
+        <Paging
+        page={page}
+        hasPrevPage={page > 1}
+        hasNextPage={data.items && data.items.length >= 2}
+        onPrevPageClick={this.prevPage}
+        onNextPageClick={this.nextPage}
+      />
       </section>
 
     );

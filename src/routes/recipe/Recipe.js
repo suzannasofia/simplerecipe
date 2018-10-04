@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
-// import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 
+import api from '../../api';
 import Recipe from '../../components/recipe';
+import BackButton from '../../components/back-button';
 
-// import query from '../../scripts/db';
-import storedData from '../../data/data';
-
-var content = require('../../scripts/recipes.txt')
+//ath import back button
 
 export default class RecipeRoute extends Component {
   static propTypes = {
@@ -26,38 +24,29 @@ export default class RecipeRoute extends Component {
   state = { loading: true }
 
   componentDidMount() {
+    window.scrollTo(0, 0)
     this.fetchRecipe();
   }
 
-  //fetch recipe from postgres database. Will be used later.
-  /*async fetchRecipe() {
-
-    const { id } = this.props.match.params;
-
-    let q = `
-      SELECT *
-      FROM recipes
-      WHERE id = $1
-      `;
-
-    const values = id;
-
-    try {
-      const recipe = await query(q, id);
-      this.setState({ loading: false, data: recipe });
-      console.log("tókst að ná í gögn?, þau eru ", recipe);
-    } catch (error) {
-      console.error('Error fetching data', error);
-      this.setState({ error: true, loading: false });
-    }
-
-  }*/
-
   async fetchRecipe() {
     const { id } = this.props.match.params;
-    const content = await storedData();
-    if (content.recipes.length <=  id) this.setState({ error: 'Recipe does not exist'});
-    this.setState({ loading: false, data: content.recipes[id]});
+
+    const url = `/recipes/${id}`;
+
+    try {
+      const data = await api.get(url);
+      this.setState({ loading: false, data: data.result });
+    } catch (error) {
+      console.error('Error fetching recipes data', error);
+      this.setState({ error: true, loading: false });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.match.params !== prevProps.match.params) {
+      this.setState({ loading: true });
+      this.fetchRecipe();
+    }
   }
 
   render() {
@@ -82,6 +71,8 @@ export default class RecipeRoute extends Component {
           instructions={data.instructions}
           image={data.image}
         />
+
+        <BackButton>Go back</BackButton>
       </div>
     );
   }

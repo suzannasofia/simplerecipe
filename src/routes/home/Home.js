@@ -1,24 +1,33 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 import { Link } from 'react-router-dom';
-import storedData from '../../data/data';
+
 import './Home.css';
 
-// import Heading from '../../components/heading';
+import Heading from '../../components/heading';
 import Hero from '../../components/hero';
+import api from '../../api';
 
 export default class Home extends Component {
-
   state = { loading: true }
 
   componentDidMount() {
-    this.fetchRecipe();
+    this.fetchRecipes();
   }
 
-  async fetchRecipe() {
-    const content = await storedData();
-    if (content.recipes.length <=  0) this.setState({ error: 'No recipes'});
-    this.setState({ loading: false, data: content});
+  async fetchRecipes() {
+
+    const limit = 15;
+    let url = `/recipes?&limit=${limit}`;
+
+    try {
+      const data = await api.get(url);
+      this.setState({ loading: false, data: data.result });
+    } catch (error) {
+      console.log('Error fetching recipe data', error);
+      this.setState({ error: true, loading: false });
+    }
+
   }
 
   render() {
@@ -35,7 +44,6 @@ export default class Home extends Component {
     return (
       <section className="recipes">
         <Helmet title="Simple Recipe" />
-        {/*<Heading>Simple Recipe</Heading>*/}
 
         <Hero
           title='Simple Recipe'
@@ -44,11 +52,13 @@ export default class Home extends Component {
           speed='1.9s'
           />
 
-          <h2 className="recipes__title">Latest recipes</h2>
+          <Heading>Latest Recipes</Heading>
+
+          {/*<h2 className="recipes__title">Latest recipes</h2>*/}
           <div className="recipes__row">
 
 
-              {data && data.recipes && data.recipes.map((recipe, i) => (
+              {data && data.items && data.items.map((recipe, i) => (
                 <div className="recipes__recipe" key={recipe.id}>
                   <div className="recipe">
                     <div className="recipe__image">

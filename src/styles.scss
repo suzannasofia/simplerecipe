@@ -33,6 +33,7 @@ body {
     // þar sem við erum að eiga við neikvæð margin á grid, setjum overflow-x
     // hér sem hidden, þá fáum við ekki lárétta skrunstiku
     overflow-x: hidden;
+    // background-color: rgb(245,245,220);
 }
 
 img { /* stylelint-disable-line */
@@ -50,7 +51,7 @@ main { /* stylelint-disable-line */
  * font-family:  bold
  * font-family:  italic
  */
-// 
+//
 // @import 'components/header/Header.scss';
 // @import 'components/hero/Hero.scss';
 // @import 'routes/recipes/Recipes.scss';

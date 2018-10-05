@@ -15,6 +15,8 @@
   padding-left: $gutter;
   padding-right: $gutter;
 
+  max-width: $max-width + 20px;
+
   @media (min-width: $max-width) {
     padding: 10px;
   }
@@ -44,6 +46,10 @@
     }
   }
 
+  &__search {
+
+  }
+
   &__nav {
     @include columns(4);
     padding-right: $gutter / 2;
@@ -61,10 +67,17 @@
     list-style: none;
   }
 
+  @media (max-width: 600px) {
+    &__hide {
+      visibility: hidden;
+    }
+  }
+
   &__item {
     display: flex;
 
     font-size: 1rem;
+    // margin: 0px 20px;
 
     &--button {
       display: none;
@@ -85,7 +98,7 @@
 .dropdown {
   display: inline-block;
   // position: absolute;
-  padding: 0px 10px;
+  padding: 0px 20px;
 
   &__header {
     display: inline-block;

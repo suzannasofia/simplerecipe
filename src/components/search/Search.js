@@ -31,6 +31,7 @@ class Search extends Component {
       <form className={classnames('search', this.props.className)} onSubmit={this.onSubmit}>
         <Input
           placeholder="Search recipe"
+          type="text"
           name="query"
           onChange={this.onChange}
           value={value}

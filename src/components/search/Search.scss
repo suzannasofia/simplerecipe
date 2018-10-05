@@ -1,9 +1,29 @@
+@import '../../config.scss';
+
 .search {
   display: flex;
   height:2em;
   margin: auto;
+  padding-right: 10px;
+
+  @media (max-width: 675px) {
+    padding-top: 15px;
+    height: 3em;
+  }
 
   &__input {
     /* margin-right: 10px; */
+
+    @media (max-width: 500px) {
+      max-width: 150px;
+      // height: 1em;
+    }
   }
+
+  &__button {
+    @media (max-width: 600px) {
+      display: none;
+    }
+  }
+
 }

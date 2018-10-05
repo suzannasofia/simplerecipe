@@ -46,7 +46,7 @@ class Header extends Component {
                 <li className="header__item">
                   <div className="dropdown">
 
-                    <div className="dropdown__header" onMouseOver={ () => this.toggleList()}>
+                    <div className="dropdown__header" onClick={ () => this.toggleList()}>
                       <div className="dropdown__header__title"><p>{String.fromCharCode(9776)}</p></div>
                       {/*listOpen
                         ? <something/>

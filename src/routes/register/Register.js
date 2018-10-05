@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Helmet from 'react-helmet';
 import { Link } from 'react-router-dom';
 import api from '../../api';
 
@@ -7,6 +8,8 @@ import Heading from '../../components/heading';
 import Button from '../../components/button';
 import Input from '../../components/input';
 import Validation from '../../components/validation';
+import Hero from '../../components/hero';
+import BackButton from '../../components/back-button';
 
 // import './Register.css';
 
@@ -61,20 +64,28 @@ class Login extends Component {
 
     return (
       <div>
-        <Heading>Nýskráning</Heading>
+        <Helmet title="New User" />
+
+        <Hero
+          title='Simple Recipe'
+          subTitle='Cooking made easy'
+          size='50'
+          speed='0.1s'
+          />
+        <Heading>Create New User</Heading>
 
         <Validation errors={errors} />
 
         <form className="login__form" onSubmit={this.handleSubmit}>
 
-          <Input className="login__input" label="Notendanafn:" name="username" value={username} onChange={this.handleInputChange} />
-          <Input className="login__input" type="password" label="Lykilorð:" name="password" value={password} onChange={this.handleInputChange} />
-          <Input className="login__input" label="Nafn:" name="name" value={name} onChange={this.handleInputChange} />
+          <Input className="login__input" label="Username:" name="username" value={username} onChange={this.handleInputChange} />
+          <Input className="login__input" type="password" label="Password:" name="password" value={password} onChange={this.handleInputChange} />
+          <Input className="login__input" label="Name:" name="name" value={name} onChange={this.handleInputChange} />
 
-          <Button className="login__button" disabled={loading}>Nýskrá</Button>
+          <Button className="login__button" disabled={loading}>Create</Button>
         </form>
 
-        <p><Link className="login__link" to="/login">Innskráning</Link></p>
+        <BackButton>Go back</BackButton>
       </div>
     );
   }

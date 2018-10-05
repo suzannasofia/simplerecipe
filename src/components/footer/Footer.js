@@ -12,7 +12,7 @@ export default class Footer extends Component {
               <p>Simple Recipe</p>
             </div>
             <div className="footer__col">
-              <p>simplerecipe@simplerecipe.com</p>
+              <p>info@simplerecipe.com</p>
             </div>
           </div>
           <p className="footer__copyright">© Simple Recipe 2018</p>

@@ -35,10 +35,15 @@
     display: flex;
     justify-content: center;
 
+    // border: 2px solid black;
+    // border-radius: 10%;
+    // margin: 0px 5px;
+    // background-color: gray;
+
     margin-bottom: $gutter * 4;
 
     @media (min-width: $max-width / 2) {
-      @include columns(6);
+      @include columns(4);
     }
 
     @media (min-width: $max-width) {
@@ -56,9 +61,9 @@
   align-items: center;
 
   &__image {
-    max-width: 300px;
-    max-height: 300px;
-    border-radius: 500%;
+    max-width: 400px;
+    max-height: 250px;
+    // border-radius: 500%;
     overflow: hidden;
 
     margin-bottom: $gutter;

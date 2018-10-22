@@ -7,7 +7,7 @@
   // margin: $gutter * 2 auto;
   margin-left: $gutter * 2 auto;
   margin-right: $gutter * 2 auto;
-  margin-bottom: $gutter * 2 auto;
+  // margin-bottom: $gutter * 2 auto;
 
   &__title {
     display: flex;
@@ -20,8 +20,15 @@
 
   }
 
+  &__new {
+    float: right;
+    margin-bottom:  $gutter * 2;
+    // display: none;
+  }
+
   &__row {
     display: flex;
+    clear:both;
     flex-wrap: wrap;
     justify-content: center;
     margin-right: -($gutter / 2);
@@ -42,19 +49,22 @@
 
     margin-bottom: $gutter * 4;
 
+    @media (min-width: $max-width / 3) {
+      @include columns(6);
+    }
     @media (min-width: $max-width / 2) {
       @include columns(4);
     }
 
-    @media (min-width: $max-width) {
-      @include columns(4);
-    }
+    // @media (min-width: $max-width) {
+    //   @include columns(4);
+    // }
   }
 }
 
 .recipe {
   width: 100%;
-  max-width: 400px;
+  max-width: 300px;
 
   display: flex;
   flex-direction: column;
@@ -96,7 +106,7 @@
     margin-bottom: 10px;
 
     font-size: 1.5rem;
-    color: black;
+    color: rgb(75,75,75);
   }
 
   &__description {

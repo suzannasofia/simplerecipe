@@ -105,8 +105,6 @@ export default class Books extends Component {
           ))}
         </ul>
 
-        <div className="users__register"><Link to={`/register`}>Add new user</Link></div>
-
         <Paging
           page={page}
           hasPrevPage={page > 1}

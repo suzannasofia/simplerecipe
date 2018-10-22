@@ -34,7 +34,16 @@ export default class Home extends Component {
     const { data, loading, error } = this.state;
 
     if (loading) {
-      return (<div>Loading recipes...</div>);
+      return (
+        <div>
+
+      <Hero
+        title='Simple Recipe'
+        subTitle='Cooking made easy'
+        size='100'
+        speed='1.9s'
+        />
+        <div>Loading recipes...</div></div>);
     }
 
     if (error || !data) {

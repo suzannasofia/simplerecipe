@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/auth';
 
 import './Header.css';
-import Button from '../button';
+// import Button from '../button';
 import Search from '../search';
 
 class Header extends Component {

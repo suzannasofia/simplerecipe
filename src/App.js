@@ -42,6 +42,7 @@ class App extends Component {
               <UserRoute exact path="/recipes/new" authenticated={auth.isAuthenticated} component={EditRecipe} />
               <Route exact path="/recipes/:id" component={Recipe} />
               <UserRoute exact path="/recipes/:id/edit" authenticated={auth.isAuthenticated} component={EditRecipe} />
+              <UserRoute exact path="/recipes/new" authenticated={auth.isAuthenticated} component={EditRecipe} />
               <UserRoute path="/users/:id" authenticated={auth.isAuthenticated} component={User} />
               <UserRoute path="/users" authenticated={auth.isAuthenticated} component={Users} />
               <UserRoute path="/profile" authenticated={auth.isAuthenticated} component={Profile} />

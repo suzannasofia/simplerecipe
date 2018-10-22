@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { Link } from 'react-router-dom';
 import querystring from 'querystring';
@@ -9,7 +10,7 @@ import Paging from '../../components/paging';
 import api from '../../api';
 import './Recipes.css';
 
-export default class Recipes extends Component {
+class Recipes extends Component {
 
   state = { loading: true }
 
@@ -35,7 +36,7 @@ export default class Recipes extends Component {
   async fetchRecipes() {
     const { query, page = 1 } = this.parseQueryString();
 
-    const limit = 4;
+    const limit = 6;
     const offset = (page - 1) * limit;
 
     let url = `/recipes?&limit=${limit}&offset=${offset}`;
@@ -75,6 +76,7 @@ export default class Recipes extends Component {
   }
 
   render() {
+    const { auth } = this.props;
     const { data, loading, error } = this.state;
     const { query, page } = this.parseQueryString();
 
@@ -105,6 +107,11 @@ export default class Recipes extends Component {
         <Heading>{heading}</Heading>
 
         {/*<h2 className="recipes__title">All recipes</h2>*/}
+        {auth.isAuthenticated && (
+          <div className="recipes__new">
+            <Link to="/recipes/new">+ New Recipe</Link>
+          </div>
+        )}
         <div className="recipes__row">
 
 
@@ -129,10 +136,12 @@ export default class Recipes extends Component {
 
         </div>
 
+        <div className="download"><Link to={`/download`}>Download data</Link></div>
+
         <Paging
         page={page}
         hasPrevPage={page > 1}
-        hasNextPage={data.items && data.items.length >= 2}
+        hasNextPage={data.items && data.items.length >= 6}
         onPrevPageClick={this.prevPage}
         onNextPageClick={this.nextPage}
       />
@@ -141,3 +150,11 @@ export default class Recipes extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth,
+  }
+}
+
+export default connect(mapStateToProps)(Recipes);

@@ -1,3 +1,14 @@
+@import '../../config.scss';
+
 .heading {
-  margin: 20px;
+  display: flex;
+  width: 100%;
+  font-family: $font-heading;
+  font-size: 2rem;
+  color: rgb(75,75,75);
+  font-weight: bold;
+  // margin: $gutter * 3;
+  margin-bottom: $gutter * 2;
+  text-align: center;
+  justify-content: center;
 }

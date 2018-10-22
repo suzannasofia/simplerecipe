@@ -17,8 +17,8 @@
 
   max-width: $max-width + 20px;
 
-  @media (min-width: $max-width) {
-    padding: 10px;
+  @media (max-width: 793px) {
+    height: 45px;
   }
 
   &__content {
@@ -33,27 +33,39 @@
   }
 
   &__title {
-    @include columns(8);
+    @include columns(5);
     padding-right: $gutter / 2;
     padding-left: $gutter / 2;
 
     font-family: $font-heading;
     font-size: 1.5rem;
 
+    @media (max-width: 622px) {
+      font-size: 1.2rem;
+    }
+
+    @media (max-width: 518px) {
+      @include columns(2);
+      margin-right: 30px;
+      font-size: 0.8rem;
+    }
+
     a {
       text-decoration: none;
       color: #fff;
     }
+
   }
 
   &__search {
-
+    @include columns(4);
   }
 
   &__nav {
     @include columns(4);
     padding-right: $gutter / 2;
     padding-left: $gutter / 2;
+    // float:right;
 
     display: flex;
   }
@@ -67,7 +79,7 @@
     list-style: none;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 793px) {
     &__hide {
       visibility: hidden;
     }
@@ -77,16 +89,16 @@
     display: flex;
 
     font-size: 1rem;
-    // margin: 0px 20px;
+    margin: 0px 20px;
 
-    &--button {
-      display: none;
-      padding-left: $gutter;
-
-      @media (min-width: 500px) {
-        display: flex;
-      }
-    }
+    // &--button {
+    //   display: none;
+    //   padding-left: $gutter;
+    //
+    //   @media (min-width: 500px) {
+    //     display: flex;
+    //   }
+    // }
   }
 
   &__link {
@@ -97,8 +109,13 @@
 
 .dropdown {
   display: inline-block;
-  // position: absolute;
-  padding: 0px 20px;
+  @media (max-width: 793px) {
+      margin-top: -11px;
+  }
+  @media (max-width: 518px) {
+      margin-right: -40px;
+  }
+
 
   &__header {
     display: inline-block;
@@ -110,7 +127,7 @@
     &__title {
       font-size: 1.5em;
       font-weight: bolder;
-      padding: 0px 7px 0px 7px;
+      padding: 0px 7px;
     }
   }
 
@@ -121,13 +138,11 @@
   &__list {
     position: absolute;
     top: 100%;
-    // marginleft: 10px;
-    // left: 0;
     right: 0;
     margin-right: 10px;
     // border: 1px solid #ccc;
     // border-radius: 4px;
-    padding: 0;
+    // padding: 0;
     margin: 2px 0 0 0;
     box-shadow: 0 0 6px 0 rgba(0,0,0,0.1);
     background-color: rgba(0, 0, 0, 0.8);

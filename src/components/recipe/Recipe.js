@@ -45,10 +45,10 @@ class Recipe extends Component {
         </div>
 
         {auth.isAuthenticated && (
-        <div className="recipeC__buttons">
-            <Link to={`/recipes/${this.props.id}/edit`}>Edit recipe</Link>
-        </div>
-      )}
+          <div className="recipeC__buttons">
+              <Link to={`/recipes/${this.props.id}/edit`}>Edit recipe</Link>
+          </div>
+        )}
       </section>
 
     );

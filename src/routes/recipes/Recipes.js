@@ -136,8 +136,6 @@ class Recipes extends Component {
 
         </div>
 
-        <div className="download"><Link to={`/download`}>Download data</Link></div>
-
         <Paging
         page={page}
         hasPrevPage={page > 1}

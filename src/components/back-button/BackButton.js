@@ -9,8 +9,12 @@ class BackButton extends Component {
   }
 
   render() {
+    var divStyle = {
+      marginBottom: '20px'
+    };
+
     return (
-      <Button style="margin-bottom=20px" onClick={this.onClick}>{this.props.children}</Button>
+      <Button style={divStyle} onClick={this.onClick}>{this.props.children}</Button>
     );
   }
 }

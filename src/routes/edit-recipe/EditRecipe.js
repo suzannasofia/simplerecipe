@@ -31,6 +31,8 @@ export default class EditRecipe extends Component {
     success: false,
     errors: [],
     error: false,
+    ingredientsArray: [],
+    instructionsArray: [],
     data: {},
   }
 
@@ -50,6 +52,10 @@ export default class EditRecipe extends Component {
     try {
       const data = await api.get(url);
       this.setState({ loading: false, data: data.result });
+      // this.setState({ numIngredients: data.result.ingredients.split("$").length});
+      // this.setState({ numInstructions: data.result.instructions.split("$").length});
+      this.setState({ ingredientsArray: data.result.ingredients.split("$") });
+      this.setState({ instructionsArray: data.result.instructions.split("$") });
     } catch (error) {
       console.error('Error fetching recipe data', error);
       this.setState({ error: true, loading: false });
@@ -74,13 +80,31 @@ export default class EditRecipe extends Component {
     this.setState({ data });
   }
 
+  handleInputArrayChange = (e) => {
+    const { name, value } = e.target;
+    const { /*data, */ingredientsArray, instructionsArray } = this.state;
+
+    const key = (e.target.getAttribute('data-key'));
+    console.log(name);
+
+    if (name === 'ingredients') ingredientsArray[key] = value;
+    if (name === 'instructions') instructionsArray[key] = value;
+
+    this.setState({ ingredientsArray, instructionsArray });
+  }
+
   handleSubmit = async (e) => {
     e.preventDefault();
+
+    const { ingredientsArray, instructionsArray } = this.state;
 
     const { id = '' } = this.props.match.params;
     this.setState({ loading: true });
 
     const { data } = this.state;
+
+    data['ingredients'] = ingredientsArray.join('$');
+    data['instructions'] = instructionsArray.join('$');
 
     let result;
 
@@ -103,6 +127,7 @@ export default class EditRecipe extends Component {
 
   render() {
     const { data = {}, loading, error, errors, success } = this.state;
+    const { ingredientsArray, instructionsArray } = this.state;
 
     if (this.props.match.params.id && loading) {
       return (<div>Loading recipe...</div>);
@@ -163,25 +188,31 @@ export default class EditRecipe extends Component {
             invalid={isInvalid('description')}
           />
 
-          <Input
-            onChange={this.handleInputChange}
-            name="ingredients"
-            className="edit__input"
-            type="textarea"
-            label="Ingredients:"
-            value={data.ingredients || ''}
-            invalid={isInvalid('ingredients')}
-          />
+          <p>Ingredients:</p>
+          {ingredientsArray && ingredientsArray.map((ingredient, i) =>
+            <Input
+              key={i}
+              onChange={this.handleInputArrayChange}
+              name='ingredients'
+              data-key={i}
+              className="edit__input"
+              value={ingredient || ''}
+              invalid={isInvalid('ingredients')}
+            />
+          )}
 
-          <Input
-            onChange={this.handleInputChange}
-            name="instructions"
-            className="edit__input"
-            type="textarea"
-            label="Instructions:"
-            value={data.instructions || ''}
-            invalid={isInvalid('instructions')}
-          />
+          <p>Instructions:</p>
+          {instructionsArray && instructionsArray.map((instruction, i) =>
+            <Input
+              key={i}
+              onChange={this.handleInputArrayChange}
+              name='instructions'
+              data-key={i}
+              className="edit__input"
+              value={instruction || ''}
+              invalid={isInvalid('instructions')}
+            />
+          )}
 
           <Input
             onChange={this.handleInputChange}

@@ -13,6 +13,9 @@ class Recipe extends Component {
     const { auth } = this.props;
     const { title, description, ingredients, instructions, image } = this.props;
 
+    var ingredientsArray = ingredients.split("$");
+    var instructionsArray = instructions.split("$");
+
     return (
       <section className="recipeC">
         <Hero
@@ -32,11 +35,23 @@ class Recipe extends Component {
             </li>
             <li className="recipeC__item">
               <h3>Ingredients</h3>
-              <p>{ingredients}</p>
+              <ul className="recipeC__ingredients">
+                {ingredientsArray && ingredientsArray.map((ingredient, i) =>
+                    <li className="recipeC__ingredient" key={i}>
+                      {ingredient}
+                    </li>
+                )}
+              </ul>
             </li>
             <li className="recipeC__item">
               <h3>Instructions</h3>
-              <p>{instructions}</p>
+              <ul className="recipeC__instructions">
+                {instructionsArray && instructionsArray.map((instruction, i) =>
+                    <li className="recipeC__instruction" key={i}>
+                      {instruction}
+                    </li>
+                )}
+              </ul>
             </li>
           </ul>
           <div className="recipeC__image">

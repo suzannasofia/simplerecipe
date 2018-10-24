@@ -54,7 +54,7 @@ export default class User extends Component {
 
   render() {
     const { data, loading, error } = this.state;
-    const { id } = this.props.match.params;
+    // const { id } = this.props.match.params;
 
     if (loading) {
       return (<div>Loading user...</div>);

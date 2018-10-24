@@ -115,7 +115,7 @@ class Recipes extends Component {
         <div className="recipes__row">
 
 
-            {data && data.items && data.items.map((recipe, i) => (
+            {data && data.items && data.items.map((recipe) => (
               <div className="recipes__recipe" key={recipe.id}>
                 <div className="recipe">
                   <div className="recipe__image">

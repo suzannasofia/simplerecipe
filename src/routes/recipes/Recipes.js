@@ -19,22 +19,27 @@ class Recipes extends Component {
   }
 
   parseQueryString() {
-    const { search = '' } = this.props.location;
+    const { search = ''} = this.props.location;
 
     let query = '';
     let page = 1;
+    let type = '';
+
 
     if (search) {
       const q = querystring.parse(search.startsWith('?') ? search.substr(1) : search);
       query = q.query;
       page = Number(q.page) || 1;
+      type = q.type;
     }
 
-    return { query, page };
+    return { query, page, type };
   }
 
   async fetchRecipes() {
-    const { query, page = 1 } = this.parseQueryString();
+    const { query, page = 1, type } = this.parseQueryString();
+    console.log('string  er ', this.parseQueryString());
+    console.log('type er ',type);
 
     const limit = 6;
     const offset = (page - 1) * limit;
@@ -43,6 +48,9 @@ class Recipes extends Component {
 
     if (query) {
       url = `${url}&search=${query}`;
+    }
+    if (type) {
+      url = `${url}&type=${type}`;
     }
 
     try {

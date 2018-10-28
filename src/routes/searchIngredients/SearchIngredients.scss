@@ -1,0 +1,17 @@
+@import '../../config.scss';
+
+.search {
+  display: flex;
+  height:2em;
+
+  &__input {
+    @media (max-width: $max-width / 3) {
+      max-width: 150px;
+    }
+  }
+
+  &__button {
+    display: none;
+  }
+
+}

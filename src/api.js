@@ -2,6 +2,7 @@ const baseurl = process.env.REACT_APP_SERVICE_URL;
 
 async function request(method, endpoint, data, file = false) {
   const url = `${baseurl}${endpoint}`;
+  console.log('url er ', url);
 
   const options = { method, headers: {} };
 

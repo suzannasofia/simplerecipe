@@ -8,7 +8,7 @@ import classnames from '../../utils/classnames';
 
 import './Search.css';
 
-class Search extends Component {
+class SearchIngredients extends Component {
   state = { value: '' }
 
   onChange = (e) => {
@@ -20,7 +20,7 @@ class Search extends Component {
     e.preventDefault();
     const { history } = this.props;
 
-    history.push(`/recipes?query=${this.state.value}&type=1`);
+    history.push(`/recipes?query=${this.state.value}&type=ingr`);
     this.setState({ value: '' });
   }
 

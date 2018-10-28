@@ -82,7 +82,7 @@ export default class EditRecipe extends Component {
 
   handleInputArrayChange = (e) => {
     const { name, value } = e.target;
-    const { /*data, */ingredientsArray, instructionsArray } = this.state;
+    const { ingredientsArray, instructionsArray } = this.state;
 
     const key = (e.target.getAttribute('data-key'));
     console.log(name);
@@ -93,18 +93,29 @@ export default class EditRecipe extends Component {
     this.setState({ ingredientsArray, instructionsArray });
   }
 
+  addElement = (e) => {
+    const { id } = e.target;
+    const { ingredientsArray, instructionsArray } = this.state;
+    if (id == 'ingredients') ingredientsArray.push("");
+    else instructionsArray.push("");
+    this.setState({ ingredientsArray, instructionsArray });
+  }
+
   handleSubmit = async (e) => {
     e.preventDefault();
 
     const { ingredientsArray, instructionsArray } = this.state;
+    var ingredients = ingredientsArray.filter(Boolean);
+    var instructions = instructionsArray.filter(Boolean);
+    // console.log(ingredients);
 
     const { id = '' } = this.props.match.params;
     this.setState({ loading: true });
 
     const { data } = this.state;
 
-    data['ingredients'] = ingredientsArray.join('$');
-    data['instructions'] = instructionsArray.join('$');
+    data['ingredients'] = ingredients.join('$');
+    data['instructions'] = instructions.join('$');
 
     let result;
 
@@ -143,7 +154,7 @@ export default class EditRecipe extends Component {
 
     if (success) {
       return (
-        <div>
+        <div className="success">
           <p>{successMessage}</p>
           <p><Link to={`/recipes/${data.id}`}>View Recipe</Link></p>
         </div>
@@ -158,6 +169,7 @@ export default class EditRecipe extends Component {
             size='50'
             speed='0.1s'
             />
+
         <Heading>{title}</Heading>
 
         {errors && errors.length > 0 && (
@@ -200,6 +212,7 @@ export default class EditRecipe extends Component {
               invalid={isInvalid('ingredients')}
             />
           )}
+          <p id="ingredients" onClick={this.addElement}>Add ingredient</p>
 
           <p>Instructions:</p>
           {instructionsArray && instructionsArray.map((instruction, i) =>
@@ -213,6 +226,7 @@ export default class EditRecipe extends Component {
               invalid={isInvalid('instructions')}
             />
           )}
+          <p id="instructions" onClick={this.addElement}>Add Instruction</p>
 
           <Input
             onChange={this.handleInputChange}

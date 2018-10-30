@@ -72,7 +72,7 @@
 
   &__image {
     max-width: 400px;
-    max-height: 250px;
+    max-height: 200px;
     // border-radius: 500%;
     overflow: hidden;
 
@@ -88,15 +88,16 @@
   &__content {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    // align-items: center;
     justify-content: stretch;
     flex: 1;
     text-decoration: none;
 
-    text-align: center;
+    // text-align: center;
   }
 
   &__title a {
+    font-family: 'Merriweather', serif;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -111,7 +112,7 @@
 
   &__description {
     font-size: 1.125rem;
-    font-weight: bold;
+    font-weight: 500;
     font-style: italic;
     color: grey;
   }

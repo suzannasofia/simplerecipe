@@ -1,0 +1,62 @@
+@import '../../config.scss';
+
+.advanced {
+  // display: flex;
+  margin: 80px;
+  // height:2em;
+  font-size: 1.4em;
+  text-align: center;
+
+  &__heading {
+    width: 100%;
+  }
+
+  &__form {
+    display: inline-block;
+    // width: 100%;
+    // clear:both;
+  }
+
+  &__input {
+    margin: $gutter / 2;
+    // display: flex;
+    height: 2em;
+    max-width: 260px;
+    // @media (max-width: $max-width / 3) {
+    //   max-width: 150px;
+    // }
+  }
+
+  &__add {
+    margin: $gutter / 2;
+    width: $gutter * 13;
+    padding-left: 15px;
+
+    // display: inline-block;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      float: left;
+      // margin-right: 3px;
+      // left: 0;
+      // top: 0;
+      width: 32px;
+      height: 32px;
+      line-height: 2px;
+      background: transparent url('../../data/plusicon.svg') no-repeat;
+      // background-size: 32px 32px;
+      cursor: pointer;
+    }
+
+    p {
+      margin: auto 50px;
+      // clear: left;
+    }
+  }
+
+  // &__button {
+  //   display: none;
+  // }
+
+}

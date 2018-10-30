@@ -10,7 +10,7 @@ class BackButton extends Component {
 
   render() {
     var divStyle = {
-      marginBottom: '20px'
+      marginBottom: '200px'
     };
 
     return (

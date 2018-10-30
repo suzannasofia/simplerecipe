@@ -50,11 +50,11 @@ class Header extends Component {
                       <div className="dropdown__header__title"><p>{String.fromCharCode(9776)}</p></div>
                     </div>
                     {listOpen && (
-                      <ul className="dropdown__list">
-                        <li className="dropdown__list__item"><Link to="/" className="dropdown__link">Home</Link></li>
-                        <li className="dropdown__list__item"><Link to="/search" className="dropdown__link">Advanced Search</Link></li>
-                        <li className="dropdown__list__item"><Link to="/about" className="dropdown__link">About Us</Link></li>
-                        <li className="dropdown__list__item"><Link to="/recipes" className="dropdown__link">Recipes A-Z</Link></li>
+                      <ul className="dropdown__list" onClick={ () => this.toggleList()}>
+                        <Link to="/" className="dropdown__link"><li className="dropdown__list__item">Home</li></Link>
+                        <Link to="/search" className="dropdown__link"><li className="dropdown__list__item">Advanced Search</li></Link>
+                        <Link to="/about" className="dropdown__link"><li className="dropdown__list__item">About Us</li></Link>
+                        <Link to="/recipes" className="dropdown__link"><li className="dropdown__list__item">Recipes A-Z</li></Link>
                         {auth.isAuthenticated && (
                           <li className="dropdown__list__item"><Link to="/users" className="dropdown__link">User</Link></li>
                         )}

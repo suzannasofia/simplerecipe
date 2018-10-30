@@ -20,17 +20,6 @@
     margin-left: $gutter * 10 auto;
   }
 
-  &__title {
-    display: flex;
-    width: 100%;
-    font-family: $font-heading;
-    font-size: 4rem;
-    font-weight: bold;
-    margin: $gutter * 2;
-    text-align: center;
-
-  }
-
   &__row {
     display: flex;
     flex-wrap: wrap;
@@ -76,14 +65,24 @@
     }
 
     h3 {
-      font-family: $font-heading;
+      font-family: 'Merriweather', serif;
       font-size: 1.5rem;
       font-weight: bold;
+      color: rgb(75,75,75);
     }
 
     p {
       font-size: 1.125rem;
+      color: rgb(75,75,75);
     }
+  }
+
+  &__instructions {
+    list-style: decimal;
+  }
+
+  &__instruction {
+    margin: 20px auto;
   }
 
   &__image {

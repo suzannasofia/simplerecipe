@@ -85,7 +85,6 @@ export default class EditRecipe extends Component {
     const { ingredientsArray, instructionsArray } = this.state;
 
     const key = (e.target.getAttribute('data-key'));
-    console.log(name);
 
     if (name === 'ingredients') ingredientsArray[key] = value;
     if (name === 'instructions') instructionsArray[key] = value;
@@ -96,7 +95,7 @@ export default class EditRecipe extends Component {
   addElement = (e) => {
     const { id } = e.target;
     const { ingredientsArray, instructionsArray } = this.state;
-    if (id == 'ingredients') ingredientsArray.push("");
+    if (id === 'ingredients') ingredientsArray.push("");
     else instructionsArray.push("");
     this.setState({ ingredientsArray, instructionsArray });
   }

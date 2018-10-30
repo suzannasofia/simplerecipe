@@ -20,7 +20,7 @@ class Search extends Component {
     e.preventDefault();
     const { history } = this.props;
 
-    history.push(`/recipes?query=${this.state.value}&type=1`);
+    history.push(`/recipes?query=${this.state.value}`);
     this.setState({ value: '' });
   }
 

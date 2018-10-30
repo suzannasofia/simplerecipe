@@ -12,6 +12,7 @@ export default class Home extends Component {
   state = { loading: true }
 
   componentDidMount() {
+    window.scrollTo(0, 0);
     this.fetchRecipes();
   }
 

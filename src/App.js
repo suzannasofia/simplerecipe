@@ -15,10 +15,12 @@ import Login from './routes/login';
 import Recipes from './routes/recipes';
 import Recipe from './routes/recipe';
 import EditRecipe from './routes/edit-recipe';
+import AdvancedSearch from './routes/advanced-search';
 import User from './routes/user';
 import Users from './routes/users';
 import Profile from './routes/profile';
 import Register from './routes/register';
+import About from './routes/about';
 import NotFound from './routes/not-found';
 
 class App extends Component {
@@ -37,10 +39,12 @@ class App extends Component {
         <div className="main_content">
             <Switch location={this.props.location}>
               <Route path="/" exact component={Home} />
+              <Route path="/about" component={About} />
               <Route path="/login" exact component={Login} />
               <Route path="/recipes" exact component={Recipes} />
               <UserRoute exact path="/recipes/new" authenticated={auth.isAuthenticated} component={EditRecipe} />
               <Route exact path="/recipes/:id" component={Recipe} />
+              <Route exact path="/search" component={AdvancedSearch} />
               <UserRoute exact path="/recipes/:id/edit" authenticated={auth.isAuthenticated} component={EditRecipe} />
               <UserRoute exact path="/recipes/new" authenticated={auth.isAuthenticated} component={EditRecipe} />
               <UserRoute path="/users/:id" authenticated={auth.isAuthenticated} component={User} />
